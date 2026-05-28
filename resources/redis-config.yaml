@@ -1,0 +1,17 @@
+SLACK_CHANNEL_NAME: build-status
+
+ENVIRONMENT: prod
+
+CODE_BASE_PATH: env/prod
+
+ACTION_MESSAGE: Redis deployment started
+
+KEEP_APPROVAL_STAGE: true
+
+REPO_URL: https://github.com/itzBonCar/redis-ansible-shared-library.git
+
+BRANCH: main
+
+PLAYBOOK: ansible/playbooks/redis-install.yml
+
+INVENTORY: ansible/inventory/prod.ini

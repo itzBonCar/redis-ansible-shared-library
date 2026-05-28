@@ -1,0 +1,37 @@
+---
+- hosts: redis
+  become: yes
+
+  tasks:
+    - name: Gather OS facts
+      setup:
+
+    - name: Install Redis on rpm based
+      yum:
+        name: redis
+        state: present
+      when: 
+        - ansible_os_family == "RedHat"
+
+
+    - name: Install Redis on debian based
+      apt:
+        name: redis-server
+        state: present
+        update_cache: yes
+      when: 
+        - ansible_os_family == "Debian"
+
+    - name: Start Redis
+      service:
+        name: redis
+        state: started
+        enabled: yes
+
+    - name: Verify Redis
+      shell: redis-cli ping
+      register: redis_output
+
+    - debug:
+        var: redis_output.stdout
+
