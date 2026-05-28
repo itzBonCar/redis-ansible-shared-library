@@ -43,7 +43,8 @@ def call() {
 							sshagent(credentials: ['super-ot-kp']) {
 
 								sh """
-
+									
+									export ANSIBLE_CONFIG=ansible/ansible.cfg
 									ansible-playbook -i ${config.INVENTORY} ${config.PLAYBOOK}
 
 								"""
